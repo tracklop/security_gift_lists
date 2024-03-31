@@ -1,0 +1,52 @@
+{
+    "name": "app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node ./src/app.js",
+        "start:dev": "nodemon --exec babel-node src/app.js --out-dir dist --source-maps inline --ignore public/js/*.js",
+        "start:prod": "pm2-runtime src/app.js",
+        "build": "babel src --out-dir dist --source-maps inline",
+        "migrate": "npx sequelize-cli db:migrate",
+        "test": "jest"
+    },
+    "jest": {
+        "testEnvironment": "node"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test && codacy-analysis-cli analyze"
+        }
+    },
+    "keywords": [],
+    "author": "Otuszewski Hugo - Gosselin Sebastien",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "boxen": "^7.1.1",
+        "dotenv": "^16.4.5",
+        "ejs": "^3.1.9",
+        "express": "^4.18.3",
+        "express-session": "^1.18.0",
+        "method-override": "^3.0.0",
+        "pg": "^8.11.3",
+        "pg-hstore": "^2.3.4",
+        "sequelize": "^6.37.1",
+        "umzug": "^3.7.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.21.0",
+        "@babel/core": "^7.21.4",
+        "@babel/node": "^7.20.7",
+        "@babel/preset-env": "^7.21.4",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "husky": "^9.0.11",
+        "jest": "^29.7.0",
+        "prettier": "^3.2.5",
+        "sequelize-cli": "^6.6.2"
+    },
+    "type": "module"
+}
