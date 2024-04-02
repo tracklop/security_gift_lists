@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    gift_list_db:
+        image: postgres
+        container_name: gift_list_db
+        restart: unless-stopped
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_HOST=postgres
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=docker
+            - POSTGRES_PORT=5432
+        volumes:
+            - db_gift_list_data:/var/lib/postgresql/data
+        networks:
+            - app-network
+
+volumes:
+    db_gift_list_data:
+
+networks:
+    app-network:
+        driver: bridge
